@@ -1,0 +1,70 @@
+# depslib dependency file v1.0
+1501522688 source:d:\stm32_lora\dev\dev_cpu_stm32l1xx\dev_cpu_stm32l1xx.c
+	"stm32l1xx.h"
+	"dev_cpu.h"
+
+1501524973 d:\stm32_lora\projects\stm32l1xx_tag\inc\stm32l1xx.h
+	"core_cm3.h"
+	"system_stm32l1xx.h"
+	<stdint.h>
+	"stm32l1xx_conf.h"
+
+1501524973 d:\stm32_lora\projects\stm32l1xx_tag\cmsis\core_cm3.h
+	<stdint.h>
+	<core_cmInstr.h>
+	<core_cmFunc.h>
+
+1501524973 d:\stm32_lora\projects\stm32l1xx_tag\cmsis\core_cminstr.h
+	<cmsis_iar.h>
+	<cmsis_ccs.h>
+
+1501524973 d:\stm32_lora\projects\stm32l1xx_tag\cmsis\core_cmfunc.h
+	<cmsis_iar.h>
+	<cmsis_ccs.h>
+
+1501524973 d:\stm32_lora\projects\stm32l1xx_tag\inc\system_stm32l1xx.h
+
+1501522688 d:\stm32_lora\dev\dev_cpu.h
+
+1501522688 source:d:\stm32_lora\dev\dev_dac_stm32l1xx\dev_dac_stm32l1xx.c
+	"stm32l1xx.h"
+	"dac.h"
+
+1501522688 d:\stm32_lora\dev\dac.h
+
+1501522688 source:d:\stm32_lora\dev\dev_gpio_stm32l1xx\dev_gpio_stm32l1xx.c
+	"stm32l1xx.h"
+	"gpio.h"
+
+1501522688 d:\stm32_lora\dev\gpio.h
+
+1501522688 source:d:\stm32_lora\dev\dev_hw_timer_stm32l1xx\dev_hw_timer_stm32l1xx.c
+	<stm32l1xx.h>
+	"dev_hw_timer.h"
+
+1501522688 d:\stm32_lora\dev\dev_hw_timer.h
+
+1502222559 source:d:\stm32_lora\projects\stm32l1xx_tag\src\main.c
+	"conf_board.h"
+
+1502222300 d:\stm32_lora\projects\stm32l1xx_tag\inc\conf_board.h
+	<stdlib.h>
+	"stm32l1xx.h"
+	"dev_cpu.h"
+	"gpio.h"
+	"dev_hw_timer.h"
+	"dac.h"
+
+1501522688 d:\stm32_lora\core\stdlib_mcu32\stdlib.h
+	<stddef.h>
+	<stdarg.h>
+	<stdint.h>
+
+1501524973 source:d:\stm32_lora\projects\stm32l1xx_tag\src\startup_stm32l1xx_md.s
+
+1501524973 source:d:\stm32_lora\projects\stm32l1xx_tag\src\system_stm32l1xx.c
+	"stm32l1xx.h"
+
+1501522688 source:d:\stm32_lora\core\stdlib_mcu32\stdlib_mcu32.c
+	<stdlib.h>
+
