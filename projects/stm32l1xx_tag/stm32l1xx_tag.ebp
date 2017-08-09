@@ -6,7 +6,7 @@
 		<Option title="stm32l1xx_tag" />
 		<Option pch_mode="2" />
 		<Option compiler="armgcc_eb" />
-		<Option virtualFolders="apps\;arch\;conf\;core\;dev\;arch\stm32l1xx\;arch\stm32l1xx\cmsis\;core\stdlib_mcu32\;dev\dev_cpu_stm32l1xx\;dev\dev_dac_stm32l1xx\;dev\dev_gpio_stm32l1xx\;dev\dev_hw_timer_stm32l1xx\;" />
+		<Option virtualFolders="apps\;arch\;conf\;core\;dev\;arch\stm32l1xx\;arch\stm32l1xx\cmsis\;core\stdlib_mcu32\;dev\dev_cpu_stm32l1xx\;dev\dev_dac_stm32l1xx\;dev\dev_gpio_stm32l1xx\;dev\dev_hw_timer_stm32l1xx\;dev\dev_temp_stm32l1xx\;dev\dev_i2c_stm32l1xx\;" />
 		<Build>
 			<Target title="Debug">
 				<Option output="bin\Debug\stm32l1xx_tag.elf" />
@@ -114,6 +114,20 @@
 			<Option compilerVar="CC" />
 			<Option virtualFolder="dev\dev_hw_timer_stm32l1xx\" />
 		</Unit>
+		<Unit filename="..\..\dev\dev_i2c.h">
+			<Option virtualFolder="dev\" />
+		</Unit>
+		<Unit filename="..\..\dev\dev_i2c_stm32l1xx\dev_i2c_stm32l1xx.c">
+			<Option compilerVar="CC" />
+			<Option virtualFolder="dev\dev_i2c_stm32l1xx\" />
+		</Unit>
+		<Unit filename="..\..\dev\dev_temp.h">
+			<Option virtualFolder="dev\" />
+		</Unit>
+		<Unit filename="..\..\dev\dev_temp_stm32l1xx\dev_temp_stm32l1xx.c">
+			<Option compilerVar="CC" />
+			<Option virtualFolder="dev\dev_temp_stm32l1xx\" />
+		</Unit>
 		<Unit filename="..\..\dev\gpio.h">
 			<Option virtualFolder="dev\" />
 		</Unit>
@@ -156,7 +170,7 @@
 		<Extensions>
 			<code_completion />
 			<debugger>
-				<target_debugging_settings target="Release" active_interface="ST-link">
+				<target_debugging_settings target="Debug" active_interface="ST-link">
 					<debug_interface interface_id="ST-link" ip_address="localhost" ip_port="4242" path="${EMBITZ}\share\contrib" executable="STLinkGDB.exe" description="stm32l1xx.svd" dont_start_server="false" backoff_time="1000" options="0" reg_filter="0" active_family="STMicroelectronics" gdb_before_conn="" gdb_after_conn="">
 						<family_options family_id="STMicroelectronics">
 							<option opt_id="ID_JTAG_SWD" opt_value="swd" />
@@ -173,7 +187,7 @@
 						</family_options>
 					</debug_interface>
 				</target_debugging_settings>
-				<target_debugging_settings target="Debug" active_interface="ST-link">
+				<target_debugging_settings target="Release" active_interface="ST-link">
 					<debug_interface interface_id="ST-link" ip_address="localhost" ip_port="4242" path="${EMBITZ}\share\contrib" executable="STLinkGDB.exe" description="stm32l1xx.svd" dont_start_server="false" backoff_time="1000" options="0" reg_filter="0" active_family="STMicroelectronics" gdb_before_conn="" gdb_after_conn="">
 						<family_options family_id="STMicroelectronics">
 							<option opt_id="ID_JTAG_SWD" opt_value="swd" />

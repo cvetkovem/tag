@@ -15,7 +15,10 @@
 
 Gpio_t LED_BLUE;
 Gpio_t BUTTON;
-Gpio_t POWEREN;
+Gpio_t POWER_ENABLE;
+Gpio_t VCO_ENABLE;
+Gpio_t PA_ENABLE;
+Gpio_t CHARGER_CONNECT;
 
 void boardInit(void);
 void buttonFunc(void);
@@ -23,9 +26,13 @@ void buttonFunc(void);
 int main(void) {
   boardInit();
 
-  int i;
   while(1) {
     __NOP();
+
+    // test charger enable status
+    if(!GpioRead(&CHARGER_CONNECT)) {
+      GpioWrite(&POWER_ENABLE, 0);
+    }
     //GpioWrite(&LED_BLUE, 1);
     //for(i=0; i < 32000000; i++) __NOP();
     //GpioWrite(&LED_BLUE, 0);
@@ -36,21 +43,36 @@ int main(void) {
 void boardInit(void) {
     cpuInit();
 
-    /* LED settings */
+    /* LED pin settings */
     LED_BLUE.pinIndex = BOARD_LED_BLUE_pin;
     LED_BLUE.portIndex = BOARD_LED_BLUE_port;
     GpioInit(&LED_BLUE, PIN_OUTPUT, PIN_PUSH_PULL, PIN_NO_PULL, 0);
 
-    /* PowerEN settings */
-    POWEREN.pinIndex = BOARD_POWEREN_pin;
-    POWEREN.portIndex = BOARD_POWEREN_port;
-    GpioInit(&POWEREN, PIN_OUTPUT, PIN_PUSH_PULL, PIN_NO_PULL, 1);
+    /* Power enable pin settings */
+    POWER_ENABLE.pinIndex = BOARD_POWER_ENABLE_pin;
+    POWER_ENABLE.portIndex = BOARD_POWER_ENABLE_port;
+    GpioInit(&POWER_ENABLE, PIN_OUTPUT, PIN_PUSH_PULL, PIN_NO_PULL, 1);
 
-    /* Button settings */
+    /* Vco enable pin settings */
+    VCO_ENABLE.pinIndex = BOARD_VCO_ENABLE_pin;
+    VCO_ENABLE.portIndex = BOARD_VCO_ENABLE_port;
+    GpioInit(&VCO_ENABLE, PIN_OUTPUT, PIN_PUSH_PULL, PIN_NO_PULL, 0);
+
+    /* PA enable pin settings */
+    PA_ENABLE.pinIndex = BOARD_PA_ENABLE_pin;
+    PA_ENABLE.portIndex = BOARD_PA_ENABLE_port;
+    GpioInit(&PA_ENABLE, PIN_OUTPUT, PIN_PUSH_PULL, PIN_NO_PULL, 0);
+
+    /* Button pin settings */
     BUTTON.pinIndex = BOARD_BUTTON_pin;
     BUTTON.portIndex = BOARD_BUTTON_port;
     GpioInit(&BUTTON, PIN_INPUT, PIN_PUSH_PULL, PIN_NO_PULL, 0);
     GpioSetInterrupt(&BUTTON, IRQ_FALLING_EDGE, IRQ_HIGH_PRIORITY, buttonFunc);
+
+    /* Charger connection status pin settings */
+    CHARGER_CONNECT.pinIndex = BOARD_CHARGER_CONNECT_pin;
+    CHARGER_CONNECT.portIndex = BOARD_CHARGER_CONNECT_port;
+    GpioInit(&CHARGER_CONNECT, PIN_INPUT, PIN_PUSH_PULL, PIN_NO_PULL, 0);
 
     //TimerHwInit();
 }
