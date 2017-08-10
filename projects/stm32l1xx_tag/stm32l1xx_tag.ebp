@@ -114,9 +114,6 @@
 			<Option compilerVar="CC" />
 			<Option virtualFolder="dev\dev_hw_timer_stm32l1xx\" />
 		</Unit>
-		<Unit filename="..\..\dev\dev_i2c.h">
-			<Option virtualFolder="dev\" />
-		</Unit>
 		<Unit filename="..\..\dev\dev_i2c_stm32l1xx\dev_i2c_stm32l1xx.c">
 			<Option compilerVar="CC" />
 			<Option virtualFolder="dev\dev_i2c_stm32l1xx\" />
@@ -129,6 +126,9 @@
 			<Option virtualFolder="dev\dev_temp_stm32l1xx\" />
 		</Unit>
 		<Unit filename="..\..\dev\gpio.h">
+			<Option virtualFolder="dev\" />
+		</Unit>
+		<Unit filename="..\..\dev\i2c.h">
 			<Option virtualFolder="dev\" />
 		</Unit>
 		<Unit filename="cmsis\core_cm3.h">
