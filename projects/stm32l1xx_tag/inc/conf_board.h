@@ -8,7 +8,7 @@
 #include "dev_hw_timer.h"
 #include "dac.h"
 #include "dev_temp.h"
-#include "dev_i2c.h"
+#include "i2c.h"
 
 /** Timer IRQ event handler **/
 void TimerIrqHandler(void);
