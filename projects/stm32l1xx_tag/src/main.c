@@ -74,6 +74,21 @@ void boardInit(void) {
     CHARGER_CONNECT.portIndex = BOARD_CHARGER_CONNECT_port;
     GpioInit(&CHARGER_CONNECT, PIN_INPUT, PIN_PUSH_PULL, PIN_NO_PULL, 0);
 
+    /** READ MAC **/
+    I2C_t i2c;
+    i2c.I2C = (uint32_t *)I2C2;
+    i2c.Scl.pinIndex  = BOARD_MAC_SCL_pin;
+    i2c.Scl.portIndex = BOARD_MAC_SCL_port;
+    i2c.Sda.pinIndex  = BOARD_MAC_SDA_pin;
+    i2c.Sda.portIndex = BOARD_MAC_SDA_port;
+
+    uint8_t MAC_Address[6] = { 0 };
+    I2C_init(&i2c);
+    int i;
+    for(i=0; i < 4000000; i++) __NOP();
+    I2C_burst_read(&i2c, 0xA0, 0xFA, 6, MAC_Address);
+
+    __NOP();
     //TimerHwInit();
 }
 

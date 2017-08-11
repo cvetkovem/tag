@@ -52,11 +52,11 @@ void TimerIrqHandler(void);
 #define BOARD_TUNE_port               0 //0 - PORTA
 #define BOARD_TUNE_pin                5
 
-/** MAC I2C SCL pin PB10 **/
+/** MAC I2C2 SCL pin PB10 **/
 #define BOARD_MAC_SCL_port            1 //1 - PORTB
 #define BOARD_MAC_SCL_pin             10
 
-/** MAC I2C SDA pin PB11 **/
+/** MAC I2C2 SDA pin PB11 **/
 #define BOARD_MAC_SDA_port            1 //1 - PORTB
 #define BOARD_MAC_SDA_pin             11
 
