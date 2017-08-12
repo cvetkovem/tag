@@ -9,6 +9,7 @@
 #include "dac.h"
 #include "dev_temp.h"
 #include "i2c.h"
+#include "dev_bat_measure.h"
 
 /** Timer IRQ event handler **/
 void TimerIrqHandler(void);
@@ -28,13 +29,13 @@ void TimerIrqHandler(void);
 #define BOARD_POWER_ENABLE_port       3 //3 - PORTD
 #define BOARD_POWER_ENABLE_pin        2
 
-/** Battery measurement pin PC1 **/
+/** Battery measurement pin PC2 **/
 #define BOARD_BAT_MEAS_port           2 //2 - PORTC
-#define BOARD_BAT_MEAS_pin            1
+#define BOARD_BAT_MEAS_pin            2
 
-/** Battery ground pin PC2 **/
+/** Battery ground pin PC1 **/
 #define BOARD_BAT_GND_port            2 //2 - PORTC
-#define BOARD_BAT_GND_pin             2
+#define BOARD_BAT_GND_pin             1
 
 /** Charger connection status pin PB9 **/
 #define BOARD_CHARGER_CONNECT_port    1 //1 - PORTB

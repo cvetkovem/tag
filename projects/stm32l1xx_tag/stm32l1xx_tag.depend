@@ -140,10 +140,10 @@
 
 1502474353 d:\tag\dev\i2c.h
 
-1502543591 source:d:\tag\projects\stm32l1xx_tag\src\main.c
+1502553594 source:d:\tag\projects\stm32l1xx_tag\src\main.c
 	"conf_board.h"
 
-1502474353 d:\tag\projects\stm32l1xx_tag\inc\conf_board.h
+1502557188 d:\tag\projects\stm32l1xx_tag\inc\conf_board.h
 	<stdlib.h>
 	"stm32l1xx.h"
 	"dev_cpu.h"
@@ -152,4 +152,13 @@
 	"dac.h"
 	"dev_temp.h"
 	"i2c.h"
+	"dev_bat_measure.h"
+
+1502557283 source:d:\tag\dev\dev_bat_measure\dev_bat_measure.c
+	"stm32l1xx.h"
+	"dev_cpu.h"
+	"dev_bat_measure.h"
+
+1502554299 d:\tag\dev\dev_bat_measure.h
+	"gpio.h"
 

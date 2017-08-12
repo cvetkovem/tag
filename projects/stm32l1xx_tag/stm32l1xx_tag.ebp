@@ -6,7 +6,7 @@
 		<Option title="stm32l1xx_tag" />
 		<Option pch_mode="2" />
 		<Option compiler="armgcc_eb" />
-		<Option virtualFolders="apps\;arch\;conf\;core\;dev\;arch\stm32l1xx\;arch\stm32l1xx\cmsis\;core\stdlib_mcu32\;dev\dev_cpu_stm32l1xx\;dev\dev_dac_stm32l1xx\;dev\dev_gpio_stm32l1xx\;dev\dev_hw_timer_stm32l1xx\;dev\dev_temp_stm32l1xx\;dev\dev_i2c_stm32l1xx\;" />
+		<Option virtualFolders="apps\;arch\;conf\;core\;dev\;arch\stm32l1xx\;arch\stm32l1xx\cmsis\;core\stdlib_mcu32\;dev\dev_cpu_stm32l1xx\;dev\dev_dac_stm32l1xx\;dev\dev_gpio_stm32l1xx\;dev\dev_hw_timer_stm32l1xx\;dev\dev_temp_stm32l1xx\;dev\dev_i2c_stm32l1xx\;dev\dev_bat_measure\;" />
 		<Build>
 			<Target title="Debug">
 				<Option output="bin\Debug\stm32l1xx_tag.elf" />
@@ -91,6 +91,13 @@
 		</Unit>
 		<Unit filename="..\..\dev\dac.h">
 			<Option virtualFolder="dev\" />
+		</Unit>
+		<Unit filename="..\..\dev\dev_bat_measure.h">
+			<Option virtualFolder="dev\" />
+		</Unit>
+		<Unit filename="..\..\dev\dev_bat_measure\dev_bat_measure.c">
+			<Option compilerVar="CC" />
+			<Option virtualFolder="dev\dev_bat_measure\" />
 		</Unit>
 		<Unit filename="..\..\dev\dev_cpu.h">
 			<Option virtualFolder="dev\" />

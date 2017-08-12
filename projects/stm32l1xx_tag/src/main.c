@@ -103,6 +103,17 @@ void boardInit(void) {
 
     I2C_deInit(&i2c);
 
+    /** BATTARY MEASURE **/
+    Bat_measure_t bat_measure;
+    bat_measure.bat_measure_pin.pinIndex = BOARD_BAT_MEAS_pin;
+    bat_measure.bat_measure_pin.portIndex = BOARD_BAT_MEAS_port;
+    bat_measure.bat_gnd_pin.pinIndex = BOARD_BAT_GND_pin;
+    bat_measure.bat_gnd_pin.portIndex = BOARD_BAT_GND_port;
+
+    batMeasure(&bat_measure);
+
+    uint16_t bat = bat_measure.measurement;
+
     //TimerHwInit();
 }
 
