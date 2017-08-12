@@ -4,8 +4,12 @@
 void cpuInit()
 {
     /* Enable HSI 16MHz */
-    RCC->CR |= RCC_CR_HSION;
-    while(!(RCC->CR&RCC_CR_HSIRDY));
+    //RCC->CR |= RCC_CR_HSION;
+    //while(!(RCC->CR&RCC_CR_HSIRDY));
+
+    /* Enable HSE 16MHz */
+    RCC->CR |= RCC_CR_HSEON;
+    while(!(RCC->CR&RCC_CR_HSERDY));
 
     /* Enable LSE */
     //RCC->APB1ENR |= RCC_APB1ENR_PWREN;
@@ -14,7 +18,10 @@ void cpuInit()
     //while(!(RCC->CSR & RCC_CSR_LSERDY));
 
     /* PLL input set as HSI */
-    RCC->CFGR |= RCC_CFGR_PLLSRC_HSI;
+    //RCC->CFGR |= RCC_CFGR_PLLSRC_HSI;
+
+    /* PLL input set as HSE */
+    RCC->CFGR |= RCC_CFGR_PLLSRC_HSE;
 
     /* PLL 16*4/2 = 32MHz */
     RCC->CFGR |= RCC_CFGR_PLLMUL4;

@@ -13,6 +13,8 @@
 **********************************************************************/
 #include "conf_board.h"
 
+#define VREFINT_CAL           ((uint16_t *)(uint32_t)0x1ff800f8)
+
 Gpio_t LED_BLUE;
 Gpio_t BUTTON;
 Gpio_t POWER_ENABLE;
@@ -24,7 +26,17 @@ void boardInit(void);
 void buttonFunc(void);
 
 int main(void) {
+
+  cpuDelay_ms(100);
+
   boardInit();
+
+  uint16_t tmp = 0;
+
+  getTemp(&tmp);
+
+  uint16_t vref = 0;
+  vref = VREFINT_CAL;
 
   while(1) {
     __NOP();
@@ -82,13 +94,15 @@ void boardInit(void) {
     i2c.Sda.pinIndex  = BOARD_MAC_SDA_pin;
     i2c.Sda.portIndex = BOARD_MAC_SDA_port;
 
+    /** D8:80:39:E4:B3:66 **/
     uint8_t MAC_Address[6] = { 0 };
     I2C_init(&i2c);
     int i;
-    for(i=0; i < 4000000; i++) __NOP();
+    for(i=0; i < 4; i++) __NOP();
     I2C_burst_read(&i2c, 0xA0, 0xFA, 6, MAC_Address);
 
-    __NOP();
+    I2C_deInit(&i2c);
+
     //TimerHwInit();
 }
 

@@ -68,3 +68,88 @@
 1501522688 source:d:\stm32_lora\core\stdlib_mcu32\stdlib_mcu32.c
 	<stdlib.h>
 
+1502401003 source:d:\tag\core\stdlib_mcu32\stdlib_mcu32.c
+	<stdlib.h>
+
+1502401003 d:\tag\core\stdlib_mcu32\stdlib.h
+	<stddef.h>
+	<stdarg.h>
+	<stdint.h>
+
+1502486432 source:d:\tag\dev\dev_cpu_stm32l1xx\dev_cpu_stm32l1xx.c
+	"stm32l1xx.h"
+	"dev_cpu.h"
+
+1502401003 d:\tag\projects\stm32l1xx_tag\inc\stm32l1xx.h
+	"core_cm3.h"
+	"system_stm32l1xx.h"
+	<stdint.h>
+	"stm32l1xx_conf.h"
+
+1502401003 d:\tag\projects\stm32l1xx_tag\cmsis\core_cm3.h
+	<stdint.h>
+	<core_cmInstr.h>
+	<core_cmFunc.h>
+
+1502401003 d:\tag\projects\stm32l1xx_tag\cmsis\core_cminstr.h
+	<cmsis_iar.h>
+	<cmsis_ccs.h>
+
+1502401003 d:\tag\projects\stm32l1xx_tag\cmsis\core_cmfunc.h
+	<cmsis_iar.h>
+	<cmsis_ccs.h>
+
+1502401003 d:\tag\projects\stm32l1xx_tag\inc\system_stm32l1xx.h
+
+1502401003 d:\tag\dev\dev_cpu.h
+
+1502401003 source:d:\tag\dev\dev_dac_stm32l1xx\dev_dac_stm32l1xx.c
+	"stm32l1xx.h"
+	"dac.h"
+
+1502401003 d:\tag\dev\dac.h
+
+1502401003 source:d:\tag\dev\dev_gpio_stm32l1xx\dev_gpio_stm32l1xx.c
+	"stm32l1xx.h"
+	"gpio.h"
+
+1502401004 d:\tag\dev\gpio.h
+
+1502401003 source:d:\tag\dev\dev_hw_timer_stm32l1xx\dev_hw_timer_stm32l1xx.c
+	<stm32l1xx.h>
+	"dev_hw_timer.h"
+
+1502401003 d:\tag\dev\dev_hw_timer.h
+
+1502546095 source:d:\tag\dev\dev_temp_stm32l1xx\dev_temp_stm32l1xx.c
+	"stm32l1xx.h"
+	"dev_cpu.h"
+	"dev_temp.h"
+
+1502540832 d:\tag\dev\dev_temp.h
+
+1502401003 source:d:\tag\projects\stm32l1xx_tag\src\startup_stm32l1xx_md.s
+
+1502401003 source:d:\tag\projects\stm32l1xx_tag\src\system_stm32l1xx.c
+	"stm32l1xx.h"
+
+1502527468 source:d:\tag\dev\dev_i2c_stm32l1xx\dev_i2c_stm32l1xx.c
+	"stm32l1xx.h"
+	"gpio.h"
+	"i2c.h"
+
+1502474353 d:\tag\dev\i2c.h
+
+1502543591 source:d:\tag\projects\stm32l1xx_tag\src\main.c
+	"conf_board.h"
+
+1502474353 d:\tag\projects\stm32l1xx_tag\inc\conf_board.h
+	<stdlib.h>
+	"stm32l1xx.h"
+	"dev_cpu.h"
+	"gpio.h"
+	"dev_hw_timer.h"
+	"dac.h"
+	"dev_temp.h"
+	"i2c.h"
+

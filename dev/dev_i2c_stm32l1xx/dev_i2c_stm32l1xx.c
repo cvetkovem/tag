@@ -9,8 +9,8 @@ void I2C_init(I2C_t *obj)
     I2C_TypeDef *i2c = (I2C_TypeDef *)(obj->I2C);
 
     /* Gpio settings */
-    GpioInit(&obj->Scl, PIN_ALTERNATE_FCT, PIN_OPEN_DRAIN, PIN_NO_PULL, 0);
-    GpioInit(&obj->Sda, PIN_ALTERNATE_FCT, PIN_OPEN_DRAIN, PIN_NO_PULL, 0);
+    GpioInit(&obj->Scl, PIN_ALTERNATE_FCT, PIN_OPEN_DRAIN, PIN_PULL_UP, 0);
+    GpioInit(&obj->Sda, PIN_ALTERNATE_FCT, PIN_OPEN_DRAIN, PIN_PULL_UP, 0);
 
     /* Gpio alternate function settings */
     ((GPIO_TypeDef *)(AHBPERIPH_BASE + 0x400*(obj->Scl.portIndex)))->AFR[(obj->Scl.pinIndex < 8)?0:1] |= 0x04 << 4*(obj->Scl.pinIndex - ((obj->Scl.pinIndex < 8)?0:8));
@@ -35,9 +35,6 @@ void I2C_init(I2C_t *obj)
     *((uint32_t *)(gpio_reg + 4*15)) = 0x01;
     *((uint32_t *)(gpio_reg + 4*15)) = 0x00;
 
-    /* I2C1->CR1 |= I2C_CR1_ACK; */
-    *((uint32_t *)(gpio_reg + 4*10)) = 0x01;
-
     /* I2C1->CR2 &= ~I2C_CR2_FREQ;
        I2C1->CR2 |= I2C_CR2_FREQ_5; */
     *((uint32_t *)(gpio_reg + 4*16*2 + 4*5)) = 0x01;
@@ -48,12 +45,16 @@ void I2C_init(I2C_t *obj)
     *((uint32_t *)(gpio_reg + 4*16*14 + 4*7)) = 0x01;
 
     /* I2C1->TRISE = 0x21; */
+    *((uint32_t *)(gpio_reg + 4*16*16 + 4*1)) = 0x00;
     *((uint32_t *)(gpio_reg + 4*16*16 + 4*0)) = 0x01;
     *((uint32_t *)(gpio_reg + 4*16*16 + 4*5)) = 0x01;
 
     /* I2C Enable */
     /* I2C_CR1_PE set PE */
     *((uint32_t *)(gpio_reg + 4*0)) = 0x01;
+
+    /* I2C1->CR1 |= I2C_CR1_ACK; */
+    *((uint32_t *)(gpio_reg + 4*10)) = 0x01;
 }
 
 void I2C_deInit(I2C_t *obj)
@@ -101,11 +102,16 @@ void I2C_burst_read(I2C_t *obj, uint8_t HW_address, uint8_t addr, uint8_t n_data
     /* while (!(I2C1->SR1 & I2C_SR1_SB)); */
     while (!( i2c->SR1 & I2C_SR1_SB ));
 
+    (void) i2c->SR1;
+
 	/* I2C_Send7bitAddress(I2Cx, HW_address, I2C_Direction_Transmitter); */
-	i2c->DR = HW_address << 1; // 7bit addr + 0(write)
+	i2c->DR = HW_address & 0xFE; // 7bit addr + 0(write)
 
     /* while(!I2C_CheckEvent(I2Cx, I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED)); */
-	while (!(i2c->SR1 & I2C_SR1_ADDR))
+	while (!(i2c->SR1 & I2C_SR1_ADDR));
+
+    (void) i2c->SR1;
+    (void) i2c->SR2;
 
 	/* I2C_SendData(I2Cx, addr); */
 	i2c->DR = addr;
@@ -124,16 +130,26 @@ void I2C_burst_read(I2C_t *obj, uint8_t HW_address, uint8_t addr, uint8_t n_data
     /* while (!(I2C1->SR1 & I2C_SR1_SB)); */
     while (!( i2c->SR1 & I2C_SR1_SB ));
 
+    (void) i2c->SR1;
+
 	/* I2C_Send7bitAddress(I2Cx, HW_address, I2C_Direction_Receiver); */
-	i2c->DR = ((HW_address << 1) | 0x01); // 7bit addr + 1(read)
+	i2c->DR = (HW_address | 0x01); // 7bit addr + 1(read)
 
 	/* while (!I2C_CheckEvent(I2Cx, I2C_EVENT_MASTER_RECEIVER_MODE_SELECTED)); */
 	while (!(i2c->SR1 & I2C_SR1_ADDR));
 
+    (void) i2c->SR1;
+	(void) i2c->SR2;
+
     while(n_data--) {
-      while (!(i2c->SR1 & I2C_SR1_RXNE))
+      while (!(i2c->SR1 & I2C_SR1_RXNE));
+      (void) i2c->SR1;
+	  (void) i2c->SR2;
       *data++ = i2c->DR;
-	}
+	  }
+
+    /* I2C1->CR1 &= ~I2C_CR1_ACK; */
+    *((uint32_t *)(gpio_reg + 4*10)) = 0x00;
 
 	/* I2C_GenerateSTOP(I2Cx, ENABLE);
 	   I2C1->CR1 |= I2C_CR1_STOP; */
