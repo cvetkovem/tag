@@ -69,5 +69,4 @@ void TimerIrqHandler(void);
 #define BOARD_USART_TX_port           0 //0 - PORTA
 #define BOARD_USART_TX_pin            9
 
-
 #endif /* __CONF_BOARD_H_INCLUDED__ */

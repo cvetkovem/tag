@@ -76,7 +76,7 @@
 	<stdarg.h>
 	<stdint.h>
 
-1502486432 source:d:\tag\dev\dev_cpu_stm32l1xx\dev_cpu_stm32l1xx.c
+1503759072 source:d:\tag\dev\dev_cpu_stm32l1xx\dev_cpu_stm32l1xx.c
 	"stm32l1xx.h"
 	"dev_cpu.h"
 
@@ -101,7 +101,7 @@
 
 1502401003 d:\tag\projects\stm32l1xx_tag\inc\system_stm32l1xx.h
 
-1502401003 d:\tag\dev\dev_cpu.h
+1503759076 d:\tag\dev\dev_cpu.h
 
 1502401003 source:d:\tag\dev\dev_dac_stm32l1xx\dev_dac_stm32l1xx.c
 	"stm32l1xx.h"
@@ -109,7 +109,7 @@
 
 1502401003 d:\tag\dev\dac.h
 
-1502401003 source:d:\tag\dev\dev_gpio_stm32l1xx\dev_gpio_stm32l1xx.c
+1503763655 source:d:\tag\dev\dev_gpio_stm32l1xx\dev_gpio_stm32l1xx.c
 	"stm32l1xx.h"
 	"gpio.h"
 
@@ -121,7 +121,7 @@
 
 1502401003 d:\tag\dev\dev_hw_timer.h
 
-1502546095 source:d:\tag\dev\dev_temp_stm32l1xx\dev_temp_stm32l1xx.c
+1502557529 source:d:\tag\dev\dev_temp_stm32l1xx\dev_temp_stm32l1xx.c
 	"stm32l1xx.h"
 	"dev_cpu.h"
 	"dev_temp.h"
@@ -140,10 +140,10 @@
 
 1502474353 d:\tag\dev\i2c.h
 
-1502553594 source:d:\tag\projects\stm32l1xx_tag\src\main.c
-	"conf_board.h"
+1503764963 source:d:\tag\projects\stm32l1xx_tag\src\main.c
+	"functions.h"
 
-1502557188 d:\tag\projects\stm32l1xx_tag\inc\conf_board.h
+1503759486 d:\tag\projects\stm32l1xx_tag\inc\conf_board.h
 	<stdlib.h>
 	"stm32l1xx.h"
 	"dev_cpu.h"
@@ -154,11 +154,17 @@
 	"i2c.h"
 	"dev_bat_measure.h"
 
-1502557283 source:d:\tag\dev\dev_bat_measure\dev_bat_measure.c
+1502557516 source:d:\tag\dev\dev_bat_measure\dev_bat_measure.c
 	"stm32l1xx.h"
 	"dev_cpu.h"
 	"dev_bat_measure.h"
 
 1502554299 d:\tag\dev\dev_bat_measure.h
 	"gpio.h"
+
+1503764944 source:d:\tag\projects\stm32l1xx_tag\src\functions.c
+	"functions.h"
+
+1503759433 d:\tag\projects\stm32l1xx_tag\inc\functions.h
+	"conf_board.h"
 

@@ -48,7 +48,7 @@ void GpioDeInit(Gpio_t *obj)
 {
     register uint32_t gpio_reg;
 
-    GpioRemoveInterrupt(obj);
+    //GpioRemoveInterrupt(obj);
 
     /* MODER offset 0x00 */
 	gpio_reg = 0x42400000 + (32*(0x400*((uint32_t)obj->portIndex))) + (((uint32_t)(obj->pinIndex))*2*4);

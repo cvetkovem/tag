@@ -1,14 +1,17 @@
 #include "functions.h"
 
 #define VREFINT_CAL           ((uint16_t *)(uint32_t)0x1ff800f8)
-#define BATTERY_MIN_VOLTAGE   2500
+#define BATTERY_MIN_VOLTAGE   1000
+
+void buttonPressedReleased(void);
+
+/** D8:80:39:E4:B3:66 **/
+uint8_t macAddress[6] = { 0 };
+uint8_t packageNumber = 0;
 
 Gpio_t LED_BLUE;
 Gpio_t BUTTON;
 Gpio_t POWER_ENABLE;
-
-void buttonPressed(void);
-void buttonReleased(void);
 
 void deviceEnable() {
     cpuInit();
@@ -38,8 +41,9 @@ void deviceEnable() {
     BUTTON.pinIndex = BOARD_BUTTON_pin;
     BUTTON.portIndex = BOARD_BUTTON_port;
     GpioInit(&BUTTON, PIN_INPUT, PIN_PUSH_PULL, PIN_NO_PULL, 0);
-    GpioSetInterrupt(&BUTTON, IRQ_FALLING_EDGE, IRQ_HIGH_PRIORITY, buttonPressed);
-    GpioSetInterrupt(&BUTTON, IRQ_RISING_EDGE, IRQ_HIGH_PRIORITY, buttonReleased);
+    GpioSetInterrupt(&BUTTON, IRQ_RISING_FALLING_EDGE, IRQ_HIGH_PRIORITY, buttonPressedReleased);
+
+    cpuEnable_irq();
 
     if(!GpioRead(&BUTTON)) {
         GpioWrite(&LED_BLUE, 1);
@@ -50,17 +54,63 @@ void deviceEnable() {
     /** Create a package template **/
     //TODO
 
-    //start timer
+    //set alarm
 
-    //sleep
 }
 
-void buttonPressed(void) {
-    GpioWrite(&LED_BLUE, 1);
+void buttonPressedReleased(void) {
+    if(!GpioRead(&BUTTON)) {
+        cpuInit();
+        GpioWrite(&LED_BLUE, 1);
+        //start timer
+        TimerHwInit();
+        TimerHwStart(3500000);
+    } else {
+        GpioWrite(&LED_BLUE, 0);
+        //stop timer
+        TimerHwStop();
+        TimerHwDeInit();
+    }
 }
 
-void buttonReleased(void) {
-    GpioWrite(&LED_BLUE, 0);
+void wakeUpAndTransmit() {
+    Gpio_t VCO_ENABLE;
+    Gpio_t PA_ENABLE;
+
+    cpuInit();
+
+    if (getChargerConnectionStatus()) {
+        powerOff();
+    }
+
+    if (measureBatteryVoltage() < BATTERY_MIN_VOLTAGE) {
+        powerOff();
+    }
+
+    //create package
+
+
+    /* Vco enable pin settings */
+    VCO_ENABLE.pinIndex = BOARD_VCO_ENABLE_pin;
+    VCO_ENABLE.portIndex = BOARD_VCO_ENABLE_port;
+    GpioInit(&VCO_ENABLE, PIN_OUTPUT, PIN_PUSH_PULL, PIN_NO_PULL, 0);
+
+    /* PA enable pin settings */
+    PA_ENABLE.pinIndex = BOARD_PA_ENABLE_pin;
+    PA_ENABLE.portIndex = BOARD_PA_ENABLE_port;
+    GpioInit(&PA_ENABLE, PIN_OUTPUT, PIN_PUSH_PULL, PIN_NO_PULL, 0);
+
+    //transmit start
+
+
+    //transmit end
+    GpioWrite(&PA_ENABLE, 0);
+    GpioWrite(&VCO_ENABLE, 0);
+    GpioDeInit(&PA_ENABLE);
+    GpioDeInit(&VCO_ENABLE);
+
+    //set alarm
+
 }
 
 void readMacAddress(uint8_t *macAddress) {
@@ -121,6 +171,15 @@ uint16_t measureTemp() {
   return tmp;
 }
 
-void TimerIrqHandler(void) {
+void powerOff() {
+    GpioWrite(&POWER_ENABLE, 0);
+}
 
+void TimerIrqHandler(void) {
+    if(!GpioRead(&BUTTON)) {
+        GpioWrite(&LED_BLUE, 0);
+        GpioWrite(&POWER_ENABLE, 0);
+    } else {
+        TimerHwDeInit();
+    }
 }
