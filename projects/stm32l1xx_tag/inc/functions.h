@@ -17,4 +17,6 @@ uint16_t measureTemp();
 
 void powerOff();
 
+uint8_t buttonPressedCheck();
+
 #endif /* __FUNCTIONS_H_INCLUDED__ */

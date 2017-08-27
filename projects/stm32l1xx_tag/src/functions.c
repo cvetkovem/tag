@@ -1,13 +1,18 @@
 #include "functions.h"
 
-#define VREFINT_CAL           ((uint16_t *)(uint32_t)0x1ff800f8)
-#define BATTERY_MIN_VOLTAGE   1000
+#define VREFINT_CAL             ((uint16_t *)(uint32_t)0x1ff800f8)
+#define BATTERY_MIN_VOLTAGE     1000
+#define SLEEP_TIME_MS           5000
+#define SLEEP_TIME_USE_RAND     1
 
 void buttonPressedReleased(void);
+uint32_t getSleepTimeMs();
+uint16_t shiftRegFunc();
 
 /** D8:80:39:E4:B3:66 **/
 uint8_t macAddress[6] = { 0 };
 uint8_t packageNumber = 0;
+uint16_t sReg = 0;
 
 Gpio_t LED_BLUE;
 Gpio_t BUTTON;
@@ -50,11 +55,13 @@ void deviceEnable() {
     }
 
     readMacAddress(macAddress);
+    sReg = ((macAddress[4] << 8) & (0xFF00)) | macAddress[5];
 
     /** Create a package template **/
     //TODO
 
     //set alarm
+    //getSleepTimeMs();
 
 }
 
@@ -173,6 +180,33 @@ uint16_t measureTemp() {
 
 void powerOff() {
     GpioWrite(&POWER_ENABLE, 0);
+}
+
+uint32_t getSleepTimeMs() {
+#ifdef SLEEP_TIME_USE_RAND
+    uint16_t rand16bit;
+    float rand16bitToFloat;
+    float timeSleepMs;
+
+    rand16bit = shiftRegFunc();
+    rand16bitToFloat = (float)rand16bit;
+
+    timeSleepMs = (rand16bitToFloat / 65535.0f) * (float)SLEEP_TIME_MS;
+
+    return (uint32_t)timeSleepMs;
+#else
+    return (uint32_t)SLEEP_TIME_MS;
+#endif
+}
+
+uint16_t shiftRegFunc() {
+  sReg = ((((sReg >> 15) ^ (sReg >> 13) ^ (sReg >> 12) ^ (sReg >> 10) ^ sReg ) & 0x0001 ) << 15 ) | (sReg >> 1);
+
+  return sReg;
+}
+
+uint8_t buttonPressedCheck() {
+    return !GpioRead(&BUTTON);
 }
 
 void TimerIrqHandler(void) {

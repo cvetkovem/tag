@@ -4,7 +4,11 @@ int main(void) {
     deviceEnable();
 
     while(1) {
-        __WFI();
+        if(!buttonPressedCheck()) {
+            //TODO Stop mode
+            __WFI();
+        }
+
         __NOP();
     }
 }
