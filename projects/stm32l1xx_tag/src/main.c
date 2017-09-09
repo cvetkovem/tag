@@ -5,7 +5,8 @@ int main(void) {
 
     while(1) {
         if(!buttonPressedCheck()) {
-            //TODO Stop mode
+            //Stop mode
+            SCB->SCR |= SCB_SCR_SLEEPDEEP;
             __WFI();
         }
 

@@ -1,4 +1,5 @@
 #include "functions.h"
+#include "package.h"
 
 #define VREFINT_CAL             ((uint16_t *)(uint32_t)0x1ff800f8)
 #define BATTERY_MIN_VOLTAGE     1000
@@ -9,7 +10,11 @@ void buttonPressedReleased(void);
 uint32_t getSleepTimeMs();
 uint16_t shiftRegFunc();
 
-/** D8:80:39:E4:B3:66 **/
+/** MAC
+ READ MAC EXAMPLE:        D8:80:39:E4:B3:66
+ FULL MAC:                D8:80:39 : FF:FE : E4:B3:66
+ MAC FOR RADIO BROADCAST: E4:B3:66
+**/
 uint8_t macAddress[6] = { 0 };
 uint8_t packageNumber = 0;
 uint16_t sReg = 0;
@@ -62,7 +67,6 @@ void deviceEnable() {
 
     //set alarm
     //getSleepTimeMs();
-
 }
 
 void buttonPressedReleased(void) {
@@ -95,7 +99,8 @@ void wakeUpAndTransmit() {
     }
 
     //create package
-
+    uint8_t pkg[4];
+    createSimplePackage(pkg, &(macAddress[3]));
 
     /* Vco enable pin settings */
     VCO_ENABLE.pinIndex = BOARD_VCO_ENABLE_pin;

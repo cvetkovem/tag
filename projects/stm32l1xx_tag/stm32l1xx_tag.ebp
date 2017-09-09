@@ -153,6 +153,9 @@
 		<Unit filename="inc\functions.h">
 			<Option virtualFolder="apps\" />
 		</Unit>
+		<Unit filename="inc\package.h">
+			<Option virtualFolder="apps\" />
+		</Unit>
 		<Unit filename="inc\stm32l1xx.h">
 			<Option virtualFolder="arch\stm32l1xx\" />
 		</Unit>
@@ -164,6 +167,10 @@
 			<Option virtualFolder="apps\" />
 		</Unit>
 		<Unit filename="src\main.c">
+			<Option compilerVar="CC" />
+			<Option virtualFolder="apps\" />
+		</Unit>
+		<Unit filename="src\package.c">
 			<Option compilerVar="CC" />
 			<Option virtualFolder="apps\" />
 		</Unit>

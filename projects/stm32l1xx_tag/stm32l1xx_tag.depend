@@ -86,7 +86,7 @@
 	<stdint.h>
 	"stm32l1xx_conf.h"
 
-1502401003 d:\tag\projects\stm32l1xx_tag\cmsis\core_cm3.h
+1504959208 d:\tag\projects\stm32l1xx_tag\cmsis\core_cm3.h
 	<stdint.h>
 	<core_cmInstr.h>
 	<core_cmFunc.h>
@@ -140,7 +140,7 @@
 
 1502474353 d:\tag\dev\i2c.h
 
-1503764963 source:d:\tag\projects\stm32l1xx_tag\src\main.c
+1504959696 source:d:\tag\projects\stm32l1xx_tag\src\main.c
 	"functions.h"
 
 1503759486 d:\tag\projects\stm32l1xx_tag\inc\conf_board.h
@@ -162,9 +162,16 @@
 1502554299 d:\tag\dev\dev_bat_measure.h
 	"gpio.h"
 
-1503764944 source:d:\tag\projects\stm32l1xx_tag\src\functions.c
+1504960024 source:d:\tag\projects\stm32l1xx_tag\src\functions.c
 	"functions.h"
+	"package.h"
 
-1503759433 d:\tag\projects\stm32l1xx_tag\inc\functions.h
+1503837940 d:\tag\projects\stm32l1xx_tag\inc\functions.h
 	"conf_board.h"
+
+1504959356 d:\tag\projects\stm32l1xx_tag\inc\package.h
+	<stdlib.h>
+
+1504957236 source:d:\tag\projects\stm32l1xx_tag\src\package.c
+	"package.h"
 
