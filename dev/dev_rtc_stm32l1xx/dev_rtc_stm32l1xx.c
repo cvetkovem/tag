@@ -187,10 +187,13 @@ void rtcSetAlarm(uint16_t timeSleep_sec, void (*func)(void)) {
 
     RTC->ALRMAR = (uint32_t)tmpreg;
 
-    /* Configure the Interrupts in the RTC_CR register */
-    RTC->CR |= (uint32_t)(RTC_IT_ALRA & ~RTC_TAFCR_TAMPIE);
-    /* Configure the Tamper Interrupt in the RTC_TAFCR */
-    RTC->TAFCR |= (uint32_t)(RTC_IT_ALRA & RTC_TAFCR_TAMPIE);
+    //RTC->CR &= ~RTC_CR_ALRAIE;
+    /* set sub second */
+    //RTC->ALRMASSR |= RTC_ALRMASSR_MASKSS;
+    //RTC->ALRMASSR |= (uint32_t)(sub & 0x7FFF);
+
+    /* alarm A interrupt enable */
+    RTC->CR |= RTC_CR_ALRAIE;
 
     /* alarm A enable */
     RTC->CR |= RTC_CR_ALRAE;

@@ -3,7 +3,7 @@
 
 #define VREFINT_CAL             ((uint16_t *)(uint32_t)0x1ff800f8)
 #define BATTERY_MIN_VOLTAGE     1000
-#define SLEEP_TIME_MS           5000
+#define SLEEP_TIME_MS           15000
 #define SLEEP_TIME_USE_RAND     1
 
 void buttonPressedReleased(void);
@@ -122,7 +122,12 @@ void wakeUpAndTransmit() {
     GpioDeInit(&VCO_ENABLE);
 
     //set alarm
-    rtcSetAlarm(15, wakeUpAndTransmit);
+    uint32_t sleepTimeMs = getSleepTimeMs();
+    uint16_t sec = (uint16_t)(sleepTimeMs / 1000);
+    uint16_t sub = (uint16_t)(sleepTimeMs - (uint32_t)(sec * 1000));
+    cpuDelay_ms(sub);
+
+    rtcSetAlarm(sec, wakeUpAndTransmit);
 }
 
 void readMacAddress(uint8_t *macAddress) {
