@@ -10,6 +10,7 @@
 #include "dev_temp.h"
 #include "i2c.h"
 #include "dev_bat_measure.h"
+#include "rtc.h"
 
 /** Timer IRQ event handler **/
 void TimerIrqHandler(void);

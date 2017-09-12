@@ -11,11 +11,13 @@ void cpuInit()
     RCC->CR |= RCC_CR_HSEON;
     while(!(RCC->CR&RCC_CR_HSERDY));
 
-    /* Enable LSE */
+    /* Enable LSE and RTC */
     RCC->APB1ENR |= RCC_APB1ENR_PWREN;
     PWR->CR |= PWR_CR_DBP;
     RCC->CSR |= RCC_CSR_LSEON;
     while(!(RCC->CSR & RCC_CSR_LSERDY));
+    RCC->CSR |= RCC_CSR_RTCSEL_LSE;
+    RCC->CSR |= RCC_CSR_RTCEN;
 
     /* PLL input set as HSI */
     //RCC->CFGR |= RCC_CFGR_PLLSRC_HSI;

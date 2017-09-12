@@ -9,6 +9,7 @@
 void buttonPressedReleased(void);
 uint32_t getSleepTimeMs();
 uint16_t shiftRegFunc();
+void wakeUpAndTransmit(void);
 
 /** MAC
  READ MAC EXAMPLE:        D8:80:39:E4:B3:66
@@ -62,11 +63,10 @@ void deviceEnable() {
     readMacAddress(macAddress);
     sReg = ((macAddress[4] << 8) & (0xFF00)) | macAddress[5];
 
-    /** Create a package template **/
-    //TODO
+    rtcInit();
 
     //set alarm
-    //getSleepTimeMs();
+    rtcSetAlarm(15, wakeUpAndTransmit);
 }
 
 void buttonPressedReleased(void) {
@@ -122,7 +122,7 @@ void wakeUpAndTransmit() {
     GpioDeInit(&VCO_ENABLE);
 
     //set alarm
-
+    rtcSetAlarm(15, wakeUpAndTransmit);
 }
 
 void readMacAddress(uint8_t *macAddress) {

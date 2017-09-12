@@ -76,7 +76,7 @@
 	<stdarg.h>
 	<stdint.h>
 
-1503759072 source:d:\tag\dev\dev_cpu_stm32l1xx\dev_cpu_stm32l1xx.c
+1505242982 source:d:\tag\dev\dev_cpu_stm32l1xx\dev_cpu_stm32l1xx.c
 	"stm32l1xx.h"
 	"dev_cpu.h"
 
@@ -143,7 +143,7 @@
 1504959696 source:d:\tag\projects\stm32l1xx_tag\src\main.c
 	"functions.h"
 
-1503759486 d:\tag\projects\stm32l1xx_tag\inc\conf_board.h
+1505145806 d:\tag\projects\stm32l1xx_tag\inc\conf_board.h
 	<stdlib.h>
 	"stm32l1xx.h"
 	"dev_cpu.h"
@@ -153,6 +153,7 @@
 	"dev_temp.h"
 	"i2c.h"
 	"dev_bat_measure.h"
+	"rtc.h"
 
 1502557516 source:d:\tag\dev\dev_bat_measure\dev_bat_measure.c
 	"stm32l1xx.h"
@@ -162,7 +163,7 @@
 1502554299 d:\tag\dev\dev_bat_measure.h
 	"gpio.h"
 
-1504960024 source:d:\tag\projects\stm32l1xx_tag\src\functions.c
+1505245701 source:d:\tag\projects\stm32l1xx_tag\src\functions.c
 	"functions.h"
 	"package.h"
 
@@ -174,4 +175,10 @@
 
 1504957236 source:d:\tag\projects\stm32l1xx_tag\src\package.c
 	"package.h"
+
+1505248771 source:d:\tag\dev\dev_rtc_stm32l1xx\dev_rtc_stm32l1xx.c
+	"stm32l1xx.h"
+	"rtc.h"
+
+1505155668 d:\tag\dev\rtc.h
 
