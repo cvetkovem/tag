@@ -65,6 +65,38 @@ void deviceEnable() {
 
     rtcInit();
 
+////////////// TEST
+    Gpio_t VCO_ENABLE;
+    Gpio_t PA_ENABLE;
+
+    /* Vco enable pin settings */
+    VCO_ENABLE.pinIndex = BOARD_VCO_ENABLE_pin;
+    VCO_ENABLE.portIndex = BOARD_VCO_ENABLE_port;
+    GpioInit(&VCO_ENABLE, PIN_OUTPUT, PIN_PUSH_PULL, PIN_NO_PULL, 0);
+
+    /* PA enable pin settings */
+    PA_ENABLE.pinIndex = BOARD_PA_ENABLE_pin;
+    PA_ENABLE.portIndex = BOARD_PA_ENABLE_port;
+    GpioInit(&PA_ENABLE, PIN_OUTPUT, PIN_PUSH_PULL, PIN_NO_PULL, 0);
+
+    //GpioWrite(&PA_ENABLE, 1);
+    GpioWrite(&VCO_ENABLE, 1);
+
+    RCC->AHBENR |= RCC_AHBENR_GPIOAEN;  // Enable port A
+    GPIOA->MODER |= GPIO_MODER_MODER5;  // Analog input / output line PA5
+    GPIOA->PUPDR &= ~GPIO_PUPDR_PUPDR5; // Disable pull-up resistors
+
+    RCC->APB1ENR |= RCC_APB1ENR_DACEN;  // Enable DAC
+    DAC->CR |= DAC_CR_BOFF2;
+    DAC->CR |= DAC_CR_EN2;              // Enable channel 2 DAC
+
+    DAC->DHR8R2 = 255;
+
+    while(1) {
+
+    }
+//////////////
+
     //set alarm
     rtcSetAlarm(15, wakeUpAndTransmit);
 }
