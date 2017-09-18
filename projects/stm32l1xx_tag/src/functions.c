@@ -79,9 +79,10 @@ void deviceEnable() {
     PA_ENABLE.portIndex = BOARD_PA_ENABLE_port;
     GpioInit(&PA_ENABLE, PIN_OUTPUT, PIN_PUSH_PULL, PIN_NO_PULL, 0);
 
-    //GpioWrite(&PA_ENABLE, 1);
+    GpioWrite(&PA_ENABLE, 1);
     GpioWrite(&VCO_ENABLE, 1);
 
+//DAC INIT
     RCC->AHBENR |= RCC_AHBENR_GPIOAEN;  // Enable port A
     GPIOA->MODER |= GPIO_MODER_MODER5;  // Analog input / output line PA5
     GPIOA->PUPDR &= ~GPIO_PUPDR_PUPDR5; // Disable pull-up resistors
@@ -89,8 +90,10 @@ void deviceEnable() {
     RCC->APB1ENR |= RCC_APB1ENR_DACEN;  // Enable DAC
     DAC->CR |= DAC_CR_BOFF2;
     DAC->CR |= DAC_CR_EN2;              // Enable channel 2 DAC
-
-    DAC->DHR8R2 = 255;
+//
+    // 150  ~2.40 GHz
+    // 210  ~2.48 GHz
+    DAC->DHR8R2 = 180;
 
     while(1) {
 
@@ -145,13 +148,28 @@ void wakeUpAndTransmit() {
     GpioInit(&PA_ENABLE, PIN_OUTPUT, PIN_PUSH_PULL, PIN_NO_PULL, 0);
 
     //transmit start
+    //DAC enable
+    //TODO
 
+    GpioWrite(&VCO_ENABLE, 1); // 8 micro sec start
+    //DAC set center frequency
+    DAC->DHR8R2 = 180;
+    GpioWrite(&PA_ENABLE, 1);
+
+    //transmit
+    //DMA(MEM->DAC) enable
+    //TODO
 
     //transmit end
+    //DAC set center frequency
+    DAC->DHR8R2 = 180;
     GpioWrite(&PA_ENABLE, 0);
-    GpioWrite(&VCO_ENABLE, 0);
+    GpioWrite(&VCO_ENABLE, 0); // 4 micro sec stop
     GpioDeInit(&PA_ENABLE);
     GpioDeInit(&VCO_ENABLE);
+
+    //DAC disable
+    //TODO
 
     //set alarm
     uint32_t sleepTimeMs = getSleepTimeMs();

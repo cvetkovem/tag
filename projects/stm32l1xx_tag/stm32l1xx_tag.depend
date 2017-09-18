@@ -182,3 +182,117 @@
 
 1505258884 d:\tag\dev\rtc.h
 
+1502455038 source:d:\embitz\tag\core\stdlib_mcu32\stdlib_mcu32.c
+	<stdlib.h>
+
+1502455038 d:\embitz\tag\core\stdlib_mcu32\stdlib.h
+	<stddef.h>
+	<stdarg.h>
+	<stdint.h>
+
+1503583741 source:d:\embitz\tag\dev\dev_bat_measure\dev_bat_measure.c
+	"stm32l1xx.h"
+	"dev_cpu.h"
+	"dev_bat_measure.h"
+
+1502455038 d:\embitz\tag\projects\stm32l1xx_tag\inc\stm32l1xx.h
+	"core_cm3.h"
+	"system_stm32l1xx.h"
+	<stdint.h>
+	"stm32l1xx_conf.h"
+
+1505466231 d:\embitz\tag\projects\stm32l1xx_tag\cmsis\core_cm3.h
+	<stdint.h>
+	<core_cmInstr.h>
+	<core_cmFunc.h>
+
+1502455038 d:\embitz\tag\projects\stm32l1xx_tag\cmsis\core_cminstr.h
+	<cmsis_iar.h>
+	<cmsis_ccs.h>
+
+1502455038 d:\embitz\tag\projects\stm32l1xx_tag\cmsis\core_cmfunc.h
+	<cmsis_iar.h>
+	<cmsis_ccs.h>
+
+1502455038 d:\embitz\tag\projects\stm32l1xx_tag\inc\system_stm32l1xx.h
+
+1502455038 d:\embitz\tag\dev\dev_cpu.h
+
+1503583741 d:\embitz\tag\dev\dev_bat_measure.h
+	"gpio.h"
+
+1502455038 d:\embitz\tag\dev\gpio.h
+
+1505466231 source:d:\embitz\tag\dev\dev_cpu_stm32l1xx\dev_cpu_stm32l1xx.c
+	"stm32l1xx.h"
+	"dev_cpu.h"
+
+1502455038 source:d:\embitz\tag\dev\dev_dac_stm32l1xx\dev_dac_stm32l1xx.c
+	"stm32l1xx.h"
+	"dac.h"
+
+1502455038 d:\embitz\tag\dev\dac.h
+
+1505466231 source:d:\embitz\tag\dev\dev_gpio_stm32l1xx\dev_gpio_stm32l1xx.c
+	"stm32l1xx.h"
+	"gpio.h"
+
+1502455038 source:d:\embitz\tag\dev\dev_hw_timer_stm32l1xx\dev_hw_timer_stm32l1xx.c
+	<stm32l1xx.h>
+	"dev_hw_timer.h"
+
+1502455038 d:\embitz\tag\dev\dev_hw_timer.h
+
+1503583741 source:d:\embitz\tag\dev\dev_i2c_stm32l1xx\dev_i2c_stm32l1xx.c
+	"stm32l1xx.h"
+	"gpio.h"
+	"i2c.h"
+
+1502465135 d:\embitz\tag\dev\i2c.h
+
+1505466231 source:d:\embitz\tag\dev\dev_rtc_stm32l1xx\dev_rtc_stm32l1xx.c
+	"stm32l1xx.h"
+	"rtc.h"
+
+1505466231 d:\embitz\tag\dev\rtc.h
+
+1503583741 source:d:\embitz\tag\dev\dev_temp_stm32l1xx\dev_temp_stm32l1xx.c
+	"stm32l1xx.h"
+	"dev_cpu.h"
+	"dev_temp.h"
+
+1503583741 d:\embitz\tag\dev\dev_temp.h
+
+1505740912 source:d:\embitz\tag\projects\stm32l1xx_tag\src\functions.c
+	"functions.h"
+	"package.h"
+
+1505466231 d:\embitz\tag\projects\stm32l1xx_tag\inc\functions.h
+	"conf_board.h"
+
+1505466231 d:\embitz\tag\projects\stm32l1xx_tag\inc\conf_board.h
+	<stdlib.h>
+	"stm32l1xx.h"
+	"dev_cpu.h"
+	"gpio.h"
+	"dev_hw_timer.h"
+	"dac.h"
+	"dev_temp.h"
+	"i2c.h"
+	"dev_bat_measure.h"
+	"rtc.h"
+
+1505466231 d:\embitz\tag\projects\stm32l1xx_tag\inc\package.h
+	<stdlib.h>
+
+1505466231 source:d:\embitz\tag\projects\stm32l1xx_tag\src\main.c
+	"functions.h"
+
+1505466231 source:d:\embitz\tag\projects\stm32l1xx_tag\src\package.c
+	"package.h"
+
+1502455038 source:d:\embitz\tag\projects\stm32l1xx_tag\src\startup_stm32l1xx_md.s
+
+1502455038 source:d:\embitz\tag\projects\stm32l1xx_tag\src\system_stm32l1xx.c
+	"stm32l1xx.h"
+
